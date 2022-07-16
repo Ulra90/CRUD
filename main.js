@@ -1,19 +1,19 @@
-let students = []
+let Personas = []
 
 let tabla = document.getElementById('tabla')
 function llenarTabla(){
     tabla.innerHTML = ''
-    students.forEach((student, index)=>{
+    Personas.forEach((usuario, index)=>{
         tabla.innerHTML += `
             <tr>
                 <th scope="row">${index+1}</th>
-                <td>${student.name}</td>
-                <td>${student.course}</td>
+                <td>${usuario.name}</td>
+                <td>${usuario.task}</td>
                 <td>
                     <button type="button" class="btn btn-warning">Editar</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger eliminar" id=${student.name}>
+                    <button type="button" class="btn btn-danger eliminar" id=${usuario.name}>
                         Eliminar
                     </button>
                 </td>
@@ -29,18 +29,18 @@ function llenarTabla(){
 llenarTabla()
 
 let inputName = document.getElementById('name')
-let inputCourse = document.getElementById('course')
+let inputTask = document.getElementById('task')
 let addButton = document.getElementById('add')
 
 addButton.addEventListener('click', addStudent)
 
 
-function addStudent(){
-    let student = {
+function addUsuario(){
+    let usuario = {
         name: inputName.value,
-        course: inputCourse.value
+        task: inputCourse.value
     }
-    students.push(student)
+    Personas.push(usuario)
     llenarTabla()
 }
 
@@ -50,7 +50,7 @@ function addStudent(){
 // })
 
 function deleteUser(name){
-    students = students.filter((student)=>student.name!==name)
+    Personas = Personas.filter((usuario)=>usuario.name!==name)
     llenarTabla()
 }
 
