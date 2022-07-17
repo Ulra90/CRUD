@@ -10,7 +10,7 @@ function llenarTabla(){
                 <td>${student.name}</td>
                 <td>${student.course}</td>
                 <td>
-                    <button type="button" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-primary editar" id=${student.name}>Editar</button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger eliminar" id=${student.name}>
@@ -23,6 +23,10 @@ function llenarTabla(){
     let deleteButtons = Array.from(document.getElementsByClassName('btn btn-danger eliminar'))
     deleteButtons.forEach((button)=>{
     button.addEventListener('click', (event)=>deleteUser(event.target.id))
+})
+    let editButtons = Array.from(document.getElementsByClassName('btn btn-warning editar'))
+    deleteButtons.forEach((button)=>{
+    button.addEventListener('click', (event)=>editUser(event.target.id))
 })
 }
 
@@ -44,20 +48,22 @@ function addStudent(){
     llenarTabla()
 }
 
-// let deleteButtons = Array.from(document.getElementsByClassName('btn btn-danger eliminar'))
-// deleteButtons.forEach((button)=>{
-//     button.addEventListener('click', (event)=>deleteUser(event.target.id))
-// })
+
+
 
 function deleteUser(name){
     students = students.filter((student)=>student.name!==name)
     llenarTabla()
 }
+function editUser(name){
+    listado = listado.filter(usuario=> usuario.name === name) 
+    nombreEditado = inputName.value
+    tareaEditada = inputCourse.value
+}
 
-
-
-
-
+//Esto que está debajo fue todo lo que estuve intentando hacer para incorporar el LocalStorage, pero por alguna razon me empezo no a tirar
+//errores, si no que me dejo de funcionar por completo, sin poder agregar, sin poder eliminar ni menos editar. Tuve que volver atrás,
+//preferí entregar algo a tiempo en vez de perder la oportunidad de recorrección, además de poder aclarar dudas con los días de PonteAldía.
 
 
 
@@ -151,9 +157,3 @@ function deleteUser(name){
 //     }) 
 // }
 
-// document.getElementById('clearList').addEventListener('click', function(event){
-//     event.preventDefault()
-//     window.localStorage.removeItem('lista')
-//     document.getElementById('listaElementos').innerHTML = ''
-//     llenarTabla = []
-// })
